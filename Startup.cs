@@ -29,6 +29,7 @@ namespace DatingApp.API
         {
             services.AddDbContext<DataContext>(x => x.UseSqlite(Configuration.GetConnectionString("DefaultConnection"))); // what is in the parentesis is called a Lambda expression.   
             services.AddControllers();
+            services.AddCors();
             
         }
 
@@ -43,6 +44,8 @@ namespace DatingApp.API
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 
             app.UseAuthorization();
 
